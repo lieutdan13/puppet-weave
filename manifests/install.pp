@@ -14,7 +14,7 @@ class weave::install {
 			cwd     => "/opt",
 			command => "/bin/tar -vxzf /tmp/jdk-8.tar.gz -C /opt",
 			creates => "/opt/jdk1.8.0/bin/java",
-			require => [ Package ["tar"], Package["gunzip"], Package["unzip"], Exec["java8_wget"] ];
+			require => [ Package ["tar"], Package["gzip"], Package["unzip"], Exec["java8_wget"] ];
 	}
 
 }
