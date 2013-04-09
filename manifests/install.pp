@@ -17,4 +17,13 @@ class weave::install {
 			require => [ Package ["tar"], Package["gzip"], Package["unzip"], Exec["java8_wget"] ];
 	}
 
+	class{ git:
+		svn     => false,
+		gui     => false,
+	}
+
+	git::repo{ "weave":
+		path    => '/opt/weave',
+		source  => 'git://github.com/ambled/weave-test-java.git'
+	}
 }
