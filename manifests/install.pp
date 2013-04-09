@@ -26,4 +26,10 @@ class weave::install {
 		path    => '/opt/weave',
 		source  => 'git://github.com/ambled/weave-test-java.git'
 	}
+
+	exec {
+		"build_weave":
+			cwd     => "/opt/weave",
+			command => "build.sh";
+	}
 }
