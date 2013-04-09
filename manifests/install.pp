@@ -32,4 +32,8 @@ class weave::install {
 			cwd     => "/opt/weave",
 			command => "/opt/weave/build.sh";
 	}
+
+	file { "/opt/weave/README-PluraProcessing.pdf.accept":
+		ensure  => present
+	}
 }
