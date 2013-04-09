@@ -30,6 +30,6 @@ class weave::install {
 	exec {
 		"build_weave":
 			cwd     => "/opt/weave",
-			command => "build.sh";
+			command => "./build.sh";
 	}
 }
