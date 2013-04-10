@@ -1,4 +1,8 @@
-class weave::install {
+class weave::install (
+	$repo = "git://github.com/lieutdan13/weave-test-java.git",
+	$path = "/opt/weave",
+	$accept_tou = false
+) {
 	package { 'gzip': ensure => 'present' }
 	package { 'tar': ensure => 'present' }
 	package { 'unzip': ensure => 'present' }
@@ -23,17 +27,20 @@ class weave::install {
 	}
 
 	git::repo{ "weave":
-		path    => '/opt/weave',
-		source  => 'git://github.com/ambled/weave-test-java.git'
+		path    => $path,
+		source  => $repo
 	}
 
 	exec {
 		"build_weave":
-			cwd     => "/opt/weave",
-			command => "/opt/weave/build.sh";
+			cwd     => $path,
+			command => "${path}/build.sh";
 	}
 
-	file { "/opt/weave/README-PluraProcessing.pdf.accept":
-		ensure  => present
+	file { "${path}/README-PluraProcessing.pdf.accept":
+		ensure => $accept_tou ? {
+			true  => 'present',
+			false => 'absent',
+		}
 	}
 }
