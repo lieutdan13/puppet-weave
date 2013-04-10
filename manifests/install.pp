@@ -28,7 +28,8 @@ class weave::install (
 
 	git::repo{ "weave":
 		path    => $path,
-		source  => $repo
+		source  => $repo,
+		update  => true,
 	}
 
 	exec {
