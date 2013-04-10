@@ -35,7 +35,8 @@ class weave::install (
 	exec {
 		"build_weave":
 			cwd     => $path,
-			command => "${path}/build.sh";
+			command => "${path}/build.sh",
+			creates => "${path}/sh";
 	}
 
 	file { "${path}/README-PluraProcessing.pdf.accept":
