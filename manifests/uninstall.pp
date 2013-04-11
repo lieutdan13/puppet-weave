@@ -19,15 +19,15 @@ class weave::uninstall (
 
 	if ( $java ) {
 		file { "/tmp/jdk-8.tar.gz": ensure  => absent }
-		file { "/opt/jdk1.8.0": ensure  => absent }
+		file { "/opt/jdk1.8.0": ensure  => absent, force => true }
 	}
 
 	if ( $weave ) {
-		file { $path: ensure  => absent }
+		file { $path: ensure => absent, force => true }
 	}
 
 	if ( $config ) {
-		file { "/etc/weave.conf": ensure  => absent }
+		file { "/etc/weave.conf": ensure => absent }
 	}
 
 }
