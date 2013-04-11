@@ -12,7 +12,8 @@ class weave::install (
 		"java8_wget":
 			command => "/usr/bin/wget http://www.java.net/download/JavaFXarm/jdk-8-ea-b36e-linux-arm-hflt-29_nov_2012.tar.gz -O /tmp/jdk-8.tar.gz",
 			creates => "/tmp/jdk-8.tar.gz",
-			require => [ Package["wget"] ];
+			require => [ Package["wget"] ],
+			onlyif  => "test ! -f /opt/jdk1.8.0/bin/java";
 
 		"java8_unzip":
 			cwd     => "/opt",
