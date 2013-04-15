@@ -1,7 +1,8 @@
 class weave::install (
 	$repo = "git://github.com/lieutdan13/weave-test-java.git",
 	$path = "/opt/weave",
-	$accept_tou = false
+	$accept_tou = false,
+	$cron = false,
 ) {
 	package { 'gzip': ensure => 'present' }
 	package { 'tar': ensure => 'present' }
@@ -45,5 +46,15 @@ class weave::install (
 			true  => 'present',
 			false => 'absent',
 		}
+	}
+
+	cron { "run_weave":
+		ensure  => $cron ? {
+			true  => 'present',
+			false => 'absent',
+		},
+		command => "/opt/weave/start.sh",
+		user    => root,
+		minute  => [ 5, 35 ],
 	}
 }
