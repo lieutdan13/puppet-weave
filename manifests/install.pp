@@ -23,11 +23,6 @@ class weave::install (
 			require => [ Package ["tar"], Package["gzip"], Package["unzip"], Exec["java8_wget"] ];
 	}
 
-	class{ git:
-		svn     => false,
-		gui     => false,
-	}
-
 	git::repo{ "weave":
 		path    => $path,
 		source  => $repo,
